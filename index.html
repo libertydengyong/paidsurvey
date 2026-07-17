@@ -82,7 +82,15 @@
 </div>
 
 <footer>
-    <p>&copy; 2026 333555.tech - Real Rewards, No Scams.</p>
+    <p>&copy; 2026 333555.tech - Professional Survey Reviews.</p>
+    <!-- 自动更新日期的 SEO 脚本 -->
+    <p style="font-size: 0.8em; color: #9ca3af;">
+        Last Verified & Updated: <span id="current-date"></span>
+    </p>
+    <script>
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', options);
+    </script>
 </footer>
 
 </body>
