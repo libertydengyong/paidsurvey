@@ -1,0 +1,14 @@
+name: Daily SEO Ping
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 每天北京时间早上8点自动执行一次
+  workflow_dispatch: # 允许你手动点击运行
+
+jobs:
+  ping_google:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Google Sitemap
+        run: |
+          curl "https://www.google.com/ping?sitemap=https://333555.tech/sitemap.xml"
