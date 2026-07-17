@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verified Payout Ledger 2026 - Real-Time Payment Proofs</title>
+    <title>Verified Payout Ledger - Real-Time Payment Proofs</title>
     <meta name="description" content="Check our verified payout ledger for 2026. Real-time payment proofs from top survey sites like Qmee, Freecash, and Swagbucks.">
     <link rel="canonical" href="https://www.333555.tech/payout-ledger.html" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -35,7 +36,7 @@
 
 <main class="container">
     <article>
-        <h1>Verified Payout Ledger (July 2026)</h1>
+        <h1>Verified Payout Ledger (<span class="update-month-year"></span>)</h1>
         <p style="text-align:center; color:var(--text-muted);">Real-time status of payment reliability for top-rated survey panels.</p>
 
         <div class="tips-box" style="text-align: center; border-left: none; background: #f0fdf4; border: 1px solid #bbf7d0;">
@@ -90,13 +91,32 @@
 </main>
 
 <footer>
-    <p>&copy; 2026 333555.tech - Real-Time Payout Verification.</p>
+    <!-- 1. 版权年份也变自动了 -->
+    <p>&copy; <span id="current-year"></span> 333555.tech - Real-Time Payout Verification.</p>
+    
     <p style="font-size: 0.85em; color: #4b5563; margin-top: 10px;">
         Last Ledger Sync: <span id="current-date"></span>
     </p>
+
+    <!-- 2. 全能发动机脚本 -->
     <script>
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', options);
+        const now = new Date();
+        
+        // 自动填入今年年份 (解决你问的 94 行问题)
+        const yearEl = document.getElementById('current-year');
+        if (yearEl) yearEl.innerText = now.getFullYear();
+
+        // 自动填入完整日期 (July 17, 2026)
+        const fullOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        const footerEl = document.getElementById('current-date');
+        if (footerEl) footerEl.innerText = now.toLocaleDateString('en-US', fullOptions);
+
+        // 自动填入页面所有标题里的月份年份 (July 2026)
+        const monthOptions = { year: 'numeric', month: 'long' };
+        const monthYearString = now.toLocaleDateString('en-US', monthOptions);
+        document.querySelectorAll('.update-month-year').forEach(el => {
+            el.innerText = monthYearString;
+        });
     </script>
 </footer>
 
