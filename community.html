@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community & Payout Feedback - 333555.tech</title>
+    <meta name="description" content="Join our community. Share your payout proofs, ask questions about survey sites, and help others earn more.">
+    <link rel="canonical" href="https://www.333555.tech/community.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">Payout Ledger</a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="payout-ledger.html">Ledger</a>
+        <a href="surveys-for-moms.html">Moms</a>
+        <a href="surveys-for-students.html">Students</a>
+        <a href="community.html" style="font-weight:bold; color:var(--primary);">Community</a>
+    </nav>
+</header>
+
+<nav class="breadcrumb-container">
+    <div class="container" style="margin:0 auto; padding:0 5%;">
+        <a href="index.html">Home</a> <span>/</span> Community Feedback
+    </div>
+</nav>
+
+<main class="container">
+    <article>
+        <h1>Community Guestbook</h1>
+        <p style="text-align: center;">Share your payout proofs, ask questions, or help other earners below.</p>
+        
+        <div class="tips-box" style="background:#fff7ed; border-left:4px solid #f97316; margin-bottom: 3rem;">
+            <strong>Notice:</strong> Please do not share personal passwords. Be kind and helpful to others!
+        </div>
+
+        <!-- 留言板核心区域 -->
+        <div id="cusdis_thread"
+             data-host="https://cusdis.com"
+             data-app-id="这里填你的AppID" 
+             data-page-id="community"
+             data-page-url="https://www.333555.tech/community.html"
+             data-page-title="Community Feedback">
+        </div>
+        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
+    </article>
+</main>
+
+<footer>
+    <div style="margin-bottom: 20px;">
+        <a href="about.html" style="margin: 0 10px; color: #4b5563; text-decoration: none; font-size: 0.9rem;">About Us</a> | 
+        <a href="contact.html" style="margin: 0 10px; color: #4b5563; text-decoration: none; font-size: 0.9rem;">Contact Us</a> | 
+        <a href="community.html" style="margin: 0 10px; color: #4b5563; text-decoration: none; font-size: 0.9rem;">Community</a>
+    </div>
+    <p>&copy; <span id="current-year"></span> 333555.tech - Real People, Real Payouts.</p>
+    <p style="font-size: 0.85em; color: #4b5563; margin-top: 10px;">
+        Last Verified & Updated: <span id="current-date"></span>
+    </p>
+    <script>
+        const now = new Date();
+        const yearEl = document.getElementById('current-year');
+        if (yearEl) yearEl.innerText = now.getFullYear();
+        const dateEl = document.getElementById('current-date');
+        if (dateEl) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            dateEl.innerText = now.toLocaleDateString('en-US', options);
+        }
+        document.querySelectorAll('.update-year, .update-month-year').forEach(el => {
+            el.innerText = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+        });
+    </script>
+</footer>
+
+</body>
+</html>
