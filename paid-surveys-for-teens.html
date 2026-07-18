@@ -131,10 +131,41 @@
 </main>
 
 <footer>
-    <p>&copy; <span id="current-year"></span> 333555.tech - Reliable Rewards for All Ages.</p>
+    <!-- 1. 新增的页脚小导航 -->
+    <div style="margin-bottom: 20px;">
+        <a href="about.html" style="margin: 0 10px; color: #4b5563; text-decoration: none; font-size: 0.9rem;">About Us</a> | 
+        <a href="contact.html" style="margin: 0 10px; color: #4b5563; text-decoration: none; font-size: 0.9rem;">Contact Us</a> | 
+        <a href="community.html" style="margin: 0 10px; color: #4b5563; text-decoration: none; font-size: 0.9rem;">Community</a>
+    </div>
+
+    <!-- 2. 自动更新的版权年份 -->
+    <p>&copy; <span id="current-year"></span> 333555.tech - Professional Payout Ledger.</p>
+
+    <!-- 3. 自动更新的验证日期（SEO 权重核心） -->
     <p style="font-size: 0.85em; color: #4b5563; margin-top: 10px;">
-        Last Verified & Updated: <span id="current-date"></span>
+        Verified & Updated: <span id="current-date"></span>
     </p>
+
+    <!-- 4. 驱动脚本（如果你的 HTML 头部已经引用了 script.js，这里可以不写；为了保险也可以留着） -->
+    <script>
+    const now = new Date();
+    // 1. 自动填入今年年份
+    const yearEl = document.getElementById('current-year');
+    if (yearEl) yearEl.innerText = now.getFullYear();
+    
+    // 2. 自动填入页脚验证日期 (July 18, 2026)
+    const dateEl = document.getElementById('current-date');
+    if (dateEl) {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        dateEl.innerText = now.toLocaleDateString('en-US', options);
+    }
+
+    // 3. 自动填入标题里的月份年份 (针对所有 class="update-year" 或 "update-month-year" 的地方)
+    const monthYear = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+    document.querySelectorAll('.update-year, .update-month-year').forEach(el => {
+        el.innerText = monthYear;
+    });
+</script>
 </footer>
 
 </body>
