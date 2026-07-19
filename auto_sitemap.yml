@@ -1,11 +1,12 @@
-name: Auto Generate Sitemap & All Engine Ping
+name: Auto Generate Sitemap & SEO Ping
 
 on:
   push:
     branches:
       - main
     paths:
-      - '**.html'
+      - '**.html' # 当你修改任何网页时触发
+  workflow_dispatch: # 允许你手动点按钮运行
 
 jobs:
   build:
@@ -26,17 +27,12 @@ jobs:
 
       - name: Commit and push if changed
         run: |
-          git config --global user.name "SEO Bot"
+          git config --global user.name "Sitemap Bot"
           git config --global user.email "bot@github.com"
           git add sitemap.xml
           git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update sitemap" && git push)
       
-      # 1. 向 Google 发送通知 (虽然Google取消了ping，但curl仍然有用做日志)
-      - name: Ping Google
-        run: curl "https://www.google.com/ping?sitemap=https://www.333555.tech/sitemap.xml"
-
-      # 2. 向 Bing / IndexNow 发送自动提交通知 (核心)
-      # 替换下面的 key 为你刚才创建的那个文件名/字符
-      - name: Ping IndexNow (Bing/DuckDuckGo)
+      - name: Ping All Search Engines
         run: |
-          curl "https://www.bing.com/indexnow?url=https://www.333555.tech/sitemap.xml&key=333555techindexnowkey1234567890"
+          curl "https://www.google.com/ping?sitemap=https://www.333555.tech/sitemap.xml"
+          curl "https://www.bing.com/ping?sitemap=https://www.333555.tech/sitemap.xml"
