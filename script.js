@@ -1,29 +1,24 @@
-// 全站自动日期更新脚本 - Payout Ledger 专用
 document.addEventListener('DOMContentLoaded', function() {
     const now = new Date();
     const fullYear = now.getFullYear();
-    const monthYearOptions = { year: 'numeric', month: 'long' }; // July 2026
-    const fullDateOptions = { year: 'numeric', month: 'long', day: 'numeric' }; // July 17, 2026
+    const monthYear = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long' }); // 结果如: July 2026
+    const fullDate = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-    // 1. 自动填充页脚版权年份 (针对 id="current-year")
+    // 1. 自动填入版权年份 (针对 id="current-year")
     const yearEl = document.getElementById('current-year');
     if (yearEl) yearEl.innerText = fullYear;
 
-    // 2. 自动填充标题年份 (针对 class="update-year")
-    // 专门解决 index.html 里的 2026 自动更新
+    // 2. 自动填入完整验证日期 (针对 id="current-date")
+    const dateEl = document.getElementById('current-date');
+    if (dateEl) dateEl.innerText = fullDate;
+
+    // 3. 自动更新标题/正文里的年份 (针对 class="update-year")
     document.querySelectorAll('.update-year').forEach(el => {
         el.innerText = fullYear;
     });
 
-    // 3. 自动填充标题月份年份 (针对 class="update-month-year")
-    const monthYearString = now.toLocaleDateString('en-US', monthYearOptions);
+    // 4. 自动更新标题里的月份+年份 (针对 class="update-month-year")
     document.querySelectorAll('.update-month-year').forEach(el => {
-        el.innerText = monthYearString;
+        el.innerText = monthYear;
     });
-
-    // 4. 自动填充页脚完整同步日期 (针对 id="current-date")
-    const footerDate = document.getElementById('current-date');
-    if (footerDate) {
-        footerDate.innerText = now.toLocaleDateString('en-US', fullDateOptions);
-    }
 });
